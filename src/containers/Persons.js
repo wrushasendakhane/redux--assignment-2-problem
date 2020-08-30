@@ -6,20 +6,10 @@ import { connect } from "react-redux"
 import * as actionTypes from "../store/actions"
 
 class Persons extends Component {
-
-    personAddedHandler = () => {
-        const newPerson = {
-            id: Math.random(), // not really unique but good enough here!
-            name: 'Max',
-            age: Math.floor(Math.random() * 40)
-        }
-        this.props.onPersonAdd(newPerson)
-    }
-
     render() {
         return (
             <div>
-                <AddPerson personAdded={this.personAddedHandler} />
+                <AddPerson personAdded={(person) => this.props.onPersonAdd(person)} />
                 {this.props.persons.map(person => (
                     <Person
                         key={person.id}
